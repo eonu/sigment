@@ -3,12 +3,29 @@
 .. role:: raw-html(raw)
     :format: html
 
+.. contents:: Features
+    :depth: 1
+
 Transformations
 ===============
 
-Describe transformations
+Audio signal transformations in Sigment are represented by classes that can be used to apply
+a specific type of transformation to the audio data.
 
-.. contents:: Contents
+Some example transformation classes include ``GaussianWhiteNoise`` and ``TimeStretch``. A full
+list of available transformations and their details and parameters can be found in the table
+:ref:`below<Transformations>`.
+
+Each of these transformation classes are a subclass of the more generic ``Transform`` base class,
+which provides a basic interface that can also be used to :ref:`write custom transformations<#>`.
+
+Sigment offers a familiar interface for transformations, taking inspiration from popular augmentation libraries
+such as `imgaug <https://github.com/aleju/imgaug>`_, `nlpaug <https://github.com/makcedward/nlpaug>`_,
+`albumentations <https://github.com/albumentations-team/albumentations>`_ and `audiomentations <https://github.com/iver56/audiomentations>`_.
+
+:raw-html:`<hr/>`
+
+.. contents:: Section contents
     :local:
 
 .. _Transformations:
@@ -124,6 +141,22 @@ Available transformations
 |                                                 | | • `crop_size`: ``0 <= float <= 0.5``             |
 |                                                 | |   The fraction of the signal duration to crop    |
 |                                                 |   from the chosen ``side``.                        |
+|                                                 +----------------------------------------------------+
+|                                                 | **Requires sample rate?**: No                      |
+|                                                 +----------------------------------------------------+
+|                                                 | **Notes**: None                                    |
++-------------------------------------------------+----------------------------------------------------+
+|                                                                                                      |
++-------------------------------------------------+----------------------------------------------------+
+| | :raw-html:`<h3>Fade</h3>`                     | Fades the signal in or out.                        |
+| | ``Fade(direction, fade_size, **kwargs)``      |                                                    |
+|                                                 +----------------------------------------------------+
+|                                                 | | **Main parameters**                              |
+|                                                 | | • `direction`: ``{'in', 'out'}``                 |
+|                                                 | |   The direction to fade the signal.              |
+|                                                 | | • `fade_size`: ``0 <= float <= 0.5``             |
+|                                                 | |   The fraction of the signal to fade             |
+|                                                 |   in the chosen ``direction``.                     |
 |                                                 +----------------------------------------------------+
 |                                                 | **Requires sample rate?**: No                      |
 |                                                 +----------------------------------------------------+
@@ -279,3 +312,36 @@ The ``**kwargs`` used in the table above are the `p` and `random_state` paramete
 
             # Generate 5 augmented versions of the signal data from 'signal.wav' as numpy.ndarrays, using the fade-in transformation.
             Xs_faded = fade_in.generate_from_wav('signal.wav', n=5)
+
+Quantifiers
+===========
+
+Quantifiers are used to specify rules for how a sequence of transformations
+or quantifiers should be applied.
+
+Each quantifier class is a subclass of the more generic ``Quantifier`` base class,
+which provides a basic interface that can also be used to write custom quantifiers,
+though there is rarely a need for this.
+
+As with transformations, Sigment offers a familiar interface for quantifiers, taking inspiration from popular augmentation libraries
+such as `imgaug <https://github.com/aleju/imgaug>`_ and `nlpaug <https://github.com/makcedward/nlpaug>`_.
+
+:raw-html:`<hr/>`
+
+.. contents:: Section contents
+    :local:
+
+Available quantifiers
+---------------------
+
+Using quantifiers
+-----------------
+
+.. py:class:: sigment.quantifiers.Quantifier(steps, [main params], random_order=False, random_state=None)
+
+    TODO
+
+Pipelining
+==========
+
+TODO
