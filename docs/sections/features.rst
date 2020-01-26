@@ -334,14 +334,179 @@ such as `imgaug <https://github.com/aleju/imgaug>`_ and `nlpaug <https://github.
 Available quantifiers
 ---------------------
 
+
+
 Using quantifiers
 -----------------
 
 .. py:class:: sigment.quantifiers.Quantifier(steps, [main params], random_order=False, random_state=None)
 
-    TODO
+    .. py:function:: __call__(self, X, sr=None)
 
-Pipelining
-==========
+        Runs the quantifier steps on a provided input signal.
 
-TODO
+        :param X: The input signal to transform.
+        :type X: ``numpy.ndarray`` :math:`(T,)` or :math:`(T\times1)` for mono, :math:`(T\times2)` for stereo
+
+        :param sr: Sample rate. :raw-html:`<br/>` If the steps of the quantifier do not depend on a sample rate, this should be ``None`` (which is the default). See the :ref:`transformations table<Transformations>` to determine whether you need a sample rate or not.
+        :type sr: ``int`` :math:`> 0` or ``None``
+
+        :return: The transformed signal.
+        :rtype: ``numpy.ndarray`` :math:`(T,)` for mono, :math:`(T\times2)` for stereo
+
+        **Example**:
+
+        .. code-block:: python
+            :linenos:
+
+            import numpy as np
+            from sigment.quantifiers import SomeOf
+            from sigment.transforms import GaussianWhiteNoise, PitchShift, EdgeCrop
+
+            # Create an example stereo signal.
+            X = np.array([
+                [0.325, 1.21 ],
+                [0.53 , 0.834],
+                [1.393, 1.022],
+                [1.211, 0.38 ]
+            ])
+
+            # Use the SomeOf quantifier to run only 1 to 2 of the transformations.
+            transform = SomeOf([
+                GaussianWhiteNoise(scale=(0.05, 0.15)),
+                PitchShift(n_steps=(-1., 1.)),
+                EdgeCrop(side='start', crop_size=(0.02, 0.05))
+            ], n=(1, 2))
+
+            # Run the __call__ method on the quantifier object to transform X.
+            # NOTE: Pitch shifting requires a sample rate when called, therefore
+            #   we must call the quantifier with a specified sample rate parameter.
+            X_transform = transform(X, sr=10)
+
+    .. py:function:: generate(self, X, n, sr=None)
+
+        Runs the quantifier steps on a provided input signal, producing multiple augmented copies of the input signal.
+
+        :param X: The input signal to transform.
+        :type X: ``numpy.ndarray`` :math:`(T,)` or :math:`(T\times1)` for mono, :math:`(T\times2)` for stereo
+
+        :param n: Number of augmented versions of `X` to generate.
+        :type n: ``int`` :math:`> 0`
+
+        :param sr: Sample rate. :raw-html:`<br/>` If the steps of the quantifier do not depend on a sample rate, this should be ``None`` (which is the default). See the :ref:`transformations table<Transformations>` to determine whether you need a sample rate or not.
+        :type sr: ``int`` :math:`> 0` or ``None``
+
+        :return: The augmented versions (or version if `n=1`) of the signal `X`.
+        :rtype: ``List[numpy.ndarray]`` or ``numpy.ndarray``
+
+        **Example**:
+
+        .. code-block:: python
+            :linenos:
+
+            import numpy as np
+            from sigment.quantifiers import Sometimes, OneOf
+            from sigment.transforms import Fade, GaussianWhiteNoise, LaplacianWhiteNoise
+
+            # Create an example stereo signal.
+            X = np.array([
+                [0.325, 1.21 ],
+                [0.53 , 0.834],
+                [1.393, 1.022],
+                [1.211, 0.38 ]
+            ])
+
+            # Use the Sometimes and OneOf quantifiers to sometimes (with probability 0.65)
+            # apply a fade-in transformation and either Gaussian or Laplacian white noise.
+            transform = Sometimes([
+                Fade(direction='in', fade_size=(0.05, 0.1)),
+                OneOf([
+                    GaussianWhiteNoise(scale=(0.05, 0.15))
+                    LaplacianWhiteNoise(scale=(0.01, 0.05))
+                ])
+            ], p=0.65)
+
+            # Generate 5 augmented versions of X, using the quantifier object.
+            Xs_transform = transform.generate(X, n=5)
+
+    .. py:function:: apply_to_wav(self, source, out=None)
+
+        Runs the quantifier steps on a provided input WAV file and writes the resulting signal back to a WAV file.
+
+        .. warning:: If `out` is set to ``None`` (which is the default) or the same as `source`, the input WAV file **will** be overwritten!
+
+        :param source: Path to the input WAV file.
+        :type source: ``str``, ``Path`` or *path-like*
+
+        :param out: Output WAV path for the augmented signal.
+        :type out: ``str``, ``Path`` or *path-like*
+
+        **Example**:
+
+        .. code-block:: python
+            :linenos:
+
+            import numpy as np
+            import sigment as sig
+
+            # Create a pipeline of multiple quantifiers and transformations.
+            transform = sig.Pipeline([
+                sig.Sometimes([
+                    sig.OneOf([
+                        sig.UniformWhiteNoise(upper=(0.1, 0.12)),
+                        sig.GaussianWhiteNoise(scale=(0.01, 0.025)),
+                        sig.LaplacianWhiteNoise(scale=(0.01, 0.025))
+                    ])
+                ], p=0.5),
+                sig.SomeOf([
+                    sig.EdgeCrop('start', crop_size=(0.05, 0.15)),
+                    sig.EdgeCrop('end', crop_size=(0.05, 0.15))
+                ], n=(1, 2)),
+                sig.Sometimes([
+                    sig.SomeOf([
+                        sig.Fade('in', fade_size=(0.1, 0.2)),
+                        sig.Fade('out', fade_size=(0.1, 0.2))
+                    ], n=(1, 2))
+                ], p=0.5),
+                sig.TimeStretch(stretch=(0.7, 1.3)),
+                sig.PitchShift(n_steps=(-0.25, 0.25)),
+            ])
+
+            # Apply the pipeline steps to the input WAV file and write it to the output file.
+            transform.apply_to_wav('in.wav', 'out.wav')
+
+    .. py:function:: generate_from_wav(self, source, n=1)
+
+        Runs the quantifier steps on a provided input WAV file and returns a ``numpy.ndarray``.
+
+        :param source: Path to the input WAV file.
+        :type source: ``str``, ``Path`` or *path-like*
+
+        :param n: Number of augmented versions of the `source` signal to generate.
+        :type n: ``int`` :math:`> 0`
+
+        :return: The augmented versions (or version if `n=1`) of the `source` signal.
+        :rtype: ``List[numpy.ndarray]`` or ``numpy.ndarray``
+
+        **Example**:
+
+        .. code-block:: python
+            :linenos:
+
+            import numpy as np
+            import sigment as sig
+
+            # Create a pipeline of multiple OneOf quantifiers.
+            transform = sig.Pipeline([
+                sig.OneOf([
+                   sig.EdgeCrop(side='start', crop_size=(0.04, 0.08)),
+                   sig.EdgeCrop(side='end', crop_size=(0.04, 0.08))
+                ]),
+                sig.OneOf([
+                    sig.Fade(direction='in', fade_size=(0.02, 0.05)),
+                    sig.Fade(direction='out', fade_size=(0.02, 0.05))
+                ])
+            ])
+
+            # Generate 5 augmented versions of the signal data from 'signal.wav' as numpy.ndarrays.
+            Xs_transform = transform.generate_from_wav('signal.wav', n=5)
