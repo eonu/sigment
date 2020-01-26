@@ -26,11 +26,13 @@
     </div>
 </p>
 
+<p><b>Note</b>: Although the core functionality of this package is implemented, it remains largely under construction – with tests and documentation to still be done.</p>
+
 ## What is data augmentation?
 
 Data augmentation is the creation of artificial data from original data by typically applying a transformation, or multiple transformations, to the original data. It is a common method for improving the versatility of machine learning models, in addition to providing more training examples for datasets of limited size.
 
-In image data for example, it is common to use horizontal and vertical flipping, random cropping, zooming and additive noise for augmentation. In audio we can use other transformations such as pitch shifting and fading the signal in or out, but some image augmentation methods such as additive noise can also be used on audio data.
+In image data for example, it is common to use horizontal and vertical flipping, random cropping, zooming and additive noise for augmentation. In audio, we can use other transformations such as pitch shifting and fading the signal in or out, but some image augmentation methods such as additive noise can also be used on audio data.
 
 ### Supported augmentation methods
 

@@ -468,7 +468,7 @@ Using quantifiers
                         sig.Fade('out', fade_size=(0.1, 0.2))
                     ], n=(1, 2))
                 ], p=0.5),
-                sig.TimeStretch(stretch=(0.7, 1.3)),
+                sig.TimeStretch(rate=(0.7, 1.3)),
                 sig.PitchShift(n_steps=(-0.25, 0.25)),
             ])
 
