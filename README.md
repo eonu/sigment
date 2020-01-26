@@ -61,10 +61,10 @@ We can apply a pipeline of transformations to `F` to produce multiple augmented 
 </p>
 
 <details>
-    <summary>
-        <b>Click here to see the code for the augmentations that can produce these signals!</b>
-    </summary>
-    <p>
+<summary>
+    <b>Click here to see the code for the augmentation pipeline produces these signals!</b>
+</summary>
+<p>
 
 ```python
 import sigment as sig
@@ -96,7 +96,7 @@ transform = sig.Pipeline([
 Fs = transform.generate(F, n=25, sr=50)
 ```
 
-    </p>
+</p>
 </details>
 
 
