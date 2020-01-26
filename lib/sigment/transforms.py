@@ -240,3 +240,7 @@ class Fade(Transform):
         elif self.direction == 'out':
             X[-fade_frames:] *= np.flip(scalars)
         return X
+
+# Normalize
+# RandomCrop
+# MedianFilter
