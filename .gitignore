@@ -86,7 +86,3 @@ venv.bak/
 # Spyder project settings
 .spyderproject
 .spyproject
-
-# Early development
-Test.ipynb
-sample/
