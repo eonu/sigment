@@ -65,6 +65,7 @@ We can apply a pipeline of transformations to `F` to produce multiple augmented 
         <b>Click here to see the code for the augmentations that can produce these signals!</b>
     </summary>
     <p>
+
 ```python
 import sigment as sig
 
@@ -94,6 +95,7 @@ transform = sig.Pipeline([
 # Generate 25 augmentations of the signal F
 Fs = transform.generate(F, n=25, sr=50)
 ```
+
     </p>
 </details>
 
