@@ -11,8 +11,7 @@ setup(
     version = VERSION,
     author = 'Edwin Onuonga',
     author_email = 'ed@eonu.net',
-    description = 'An extensible data augmentation package for creating ' \
-        'complex transformation pipelines to apply to audio signals.'
+    description = 'An extensible data augmentation package for creating complex transformation pipelines for audio signals.',
     long_description = 'test',
     package_dir = {'': 'lib'},
     packages = find_packages(where='lib'),
