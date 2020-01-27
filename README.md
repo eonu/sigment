@@ -101,7 +101,4 @@ Fs = transform.generate(F, n=25, sr=50)
 </p>
 </details>
 
-
-<!-- Hide code segment -->
-
-> **Note**: The full code for this example can be found in the notebook [here]().
+> **Note**: The full code for this example can be found in the notebook [here](https://nbviewer.jupyter.org/github/eonu/sigment/blob/master/notebooks/README%20%28Example%29.ipynb).
