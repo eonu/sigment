@@ -17,7 +17,7 @@ list of available transformations and their details and parameters can be found 
 :ref:`below<Transformations>`.
 
 Each of these transformation classes are a subclass of the more generic ``Transform`` base class,
-which provides a basic interface that can also be used to :ref:`write custom transformations<#>`.
+which provides a basic interface that can also be used to `write custom transformations <https://nbviewer.jupyter.org/github/eonu/sigment/blob/master/notebooks/Custom%20Transform%20%28Example%29.ipynb>`_.
 
 Sigment offers a familiar interface for transformations, taking inspiration from popular augmentation libraries
 such as `imgaug <https://github.com/aleju/imgaug>`_, `nlpaug <https://github.com/makcedward/nlpaug>`_,
@@ -177,8 +177,7 @@ The ``**kwargs`` used in the table above are the `p` and `random_state` paramete
     .. note::
         As ``Transform`` is a base class, it should **not** be directly instantiated – use one of the transformation classes listed :ref:`above<Transformations>`.
 
-        You can however, use it to create your own transformations, following the
-        implementation of the pre-defined transformations in Sigment.
+        You can however, use it to `create your own transformations <https://nbviewer.jupyter.org/github/eonu/sigment/blob/master/notebooks/Custom%20Transform%20%28Example%29.ipynb>`_.
 
     :param p: The probability of executing the transformation.
     :type p: :math:`0 \leq` ``float`` :math:`\leq 1`
