@@ -6,7 +6,7 @@
 About
 =====
 
-Sigment is ...
+Sigment is an extensible data augmentation package for creating complex transformation pipelines for audio signals.
 
 .. toctree::
    :maxdepth: 1

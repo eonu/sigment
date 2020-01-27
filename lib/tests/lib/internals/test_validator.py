@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from sequentia.internals import _Validator
+from sigment.internals import _Validator
 
 val = _Validator()
 
