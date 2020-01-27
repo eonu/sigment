@@ -1,6 +1,3 @@
-# Disable sudo to speed up the builds
-sudo: false
-
 # Specify Python and versions to test
 language: python
 python:

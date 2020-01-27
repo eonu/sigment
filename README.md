@@ -102,3 +102,22 @@ Fs = transform.generate(F, n=25, sr=50)
 </details>
 
 > **Note**: The full code for this example can be found in the notebook [here](https://nbviewer.jupyter.org/github/eonu/sigment/blob/master/notebooks/README%20%28Example%29.ipynb).
+
+## Installation
+
+To install Sigment from PyPI, you can use `pip`:
+
+```console
+pip install sigment
+```
+
+## Components
+
+Sigment provides two main components that can be used to construct augmentation pipelines:
+
+- **Transforms** (`sigment.transforms`): Used to apply a specific type of transformation to the audio data.
+
+- **Quantifiers** (`sigment.quantifiers`): Used to specify rules for how a sequence of transformations
+or nested quantifiers should be applied to augment the audio data.
+
+Read the [documentation](https://sigment.readthedocs.io/en/latest) and [example notebooks](#TODO) for more information about the usage of both.
