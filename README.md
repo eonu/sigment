@@ -26,7 +26,7 @@
     </div>
 </p>
 
-> **Disclaimer**: Although the core functionality of this package is fully implemented, it still requires testing.
+> **Disclaimer**: Although the core functionality of this package is fully implemented, it still requires proper unit testing.
 
 ## What is data augmentation?
 
