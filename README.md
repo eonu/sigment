@@ -124,7 +124,12 @@ Read the [documentation](https://sigment.readthedocs.io/en/latest) and [example 
 
 ## Acknowledgements
 
+Sigment offers a familiar interface for transformations, taking inspiration from some other well-written augmentation libraries. Without the following libraries, the capabilities of Sigment would be very limited:
 
+- [aleju/**imgaug**](https://github.com/aleju/imgaug): _Image augmentation for machine learning experiments._
+- [makcedward/**nlpaug**](https://github.com/makcedward/nlpaug): _Data augmentation for NLP_
+- [albumentations-team/**albumentations**](https://github.com/albumentations-team/albumentations): _fast image augmentation library and easy to use wrapper around other libraries_
+- [iver56/**audiomentations**](https://github.com/iver56/audiomentations): _A Python library for audio data augmentation. Inspired by albumentations. Useful for machine learning._
 
 ## Contributors
 
