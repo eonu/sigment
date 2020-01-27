@@ -26,7 +26,7 @@
     </div>
 </p>
 
-> **Note**: Although the core functionality of this package is implemented, it remains largely under construction – with tests and documentation to still be done.
+> **Note**: Although the core functionality of this package is implemented, it still requires testing.
 
 ## What is data augmentation?
 
