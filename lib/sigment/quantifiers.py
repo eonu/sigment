@@ -174,12 +174,6 @@ class Sometimes(Quantifier):
 
     p: float [0 <= p <= 1]
         The probability of executing the transformations or quantifiers.
-
-    random_order: bool
-        Whether or not to randomize the order of execution of `steps`.
-
-    random_state: numpy.RandomState, int, optional
-        A random state object or seed for reproducible randomness.
     """
 
     def __init__(self, steps, p=0.5, random_order=False, random_state=None):

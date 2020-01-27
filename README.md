@@ -36,7 +36,7 @@ In image data for example, it is common to use horizontal and vertical flipping,
 
 ### Supported augmentation methods
 
-Sigment provides the following augmentation methods for both mono and stereo signals. More information about each can be found in the [RTD documentation](https://sigment.readthedocs.io/en/latest):
+Sigment provides the following augmentation methods for both mono and stereo signals. More information about each can be found in the [documentation](https://sigment.readthedocs.io/en/latest):
 
 - [x] White Noise (Uniform, Gaussian and Laplacian)
 - [x] Time Stretching
@@ -120,4 +120,36 @@ Sigment provides two main components that can be used to construct augmentation 
 - **Quantifiers** (`sigment.quantifiers`): Used to specify rules for how a sequence of transformations
 or nested quantifiers should be applied to augment the audio data.
 
-Read the [documentation](https://sigment.readthedocs.io/en/latest) and [example notebooks](#TODO) for more information about the usage of both.
+Read the [documentation](https://sigment.readthedocs.io/en/latest) and [example notebooks](https://nbviewer.jupyter.org/github/eonu/sigment/blob/master/notebooks/) for more information about the usage of both.
+
+## Acknowledgements
+
+
+
+## Contributors
+
+All contributions to this repository are greatly appreciated. Contribution guidelines can be found [here](/CONTRIBUTING.md).
+
+<table>
+	<thead>
+		<tr>
+			<th align="center">
+        <a href="https://github.com/eonu">
+        <img src="https://avatars0.githubusercontent.com/u/24795571?s=460&v=4" alt="Edwin Onuonga" width="60px">
+        <br/><sub><b>Edwin Onuonga</b></sub>
+        </a>
+        <br/>
+        <a href="mailto:ed@eonu.net">✉️</a>
+        <a href="https://eonu.net">🌍</a>
+			</th>
+			<!-- Add more <th></th> blocks for more contributors -->
+		</tr>
+	</thead>
+</table>
+
+---
+
+<p align="center">
+  <b>Sigment</b> &copy; 2019-2020, Edwin Onuonga - Released under the <a href="https://opensource.org/licenses/MIT">MIT</a> License.<br/>
+  <em>Authored and maintained by Edwin Onuonga.</em>
+</p>
