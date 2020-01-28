@@ -27,7 +27,7 @@ copyright = '2019-2020, Edwin Onuonga'
 author = 'Edwin Onuonga'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0.alpha1'
+release = '0.1.0a0'
 
 # -- General configuration ---------------------------------------------------
 
