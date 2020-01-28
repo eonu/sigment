@@ -330,15 +330,90 @@ such as `imgaug <https://github.com/aleju/imgaug>`_ and `nlpaug <https://github.
 .. contents:: Section contents
     :local:
 
+.. _Quantifiers:
+
 Available quantifiers
 ---------------------
 
+In the below table, the `steps` argument is of type ``List[Transform, Quantifier]``, specifying a sequence of transformations or quantifiers to be applied.
 
++-------------------------------------------------+----------------------------------------------------+
+| Quantifier                                      | Summary                                            |
++=================================================+====================================================+
+| | :raw-html:`<h3>Quantifier (Base)</h3>`        | A base class representing a single quantifier.     |
+| | ``Quantifier(steps, **kwargs)``               |                                                    |
+|                                                 +----------------------------------------------------+
+|                                                 | | **Main parameters**                              |
+|                                                 | | • None                                           |
+|                                                 +----------------------------------------------------+
+|                                                 | **Notes**: As this is a base class,                |
+|                                                 | it should **not** be initialized.                  |
++-------------------------------------------------+----------------------------------------------------+
+|                                                                                                      |
++-------------------------------------------------+----------------------------------------------------+
+| | :raw-html:`<h3>Pipeline</h3>`                 | Sequentially executes each transformation or       |
+| | ``Pipeline(steps, **kwargs)``                 | quantifier step.                                   |
+|                                                 +----------------------------------------------------+
+|                                                 | | **Main parameters**                              |
+|                                                 | | • None                                           |
+|                                                 +----------------------------------------------------+
+|                                                 | **Notes**: None                                    |
++-------------------------------------------------+----------------------------------------------------+
+|                                                                                                      |
++-------------------------------------------------+----------------------------------------------------+
+| | :raw-html:`<h3>Sometimes</h3>`                | Probabilistically applies the provided             |
+| | ``Sometimes(steps, p, **kwargs)``             | transformation or quantifier steps.                |
+|                                                 +----------------------------------------------------+
+|                                                 | | **Main parameters**                              |
+|                                                 | | • `p`: ``0 <= float <= 1``                       |
+|                                                 | |   The probability of executing the               |
+|                                                 |   transformation or quantifier steps.              |
+|                                                 +----------------------------------------------------+
+|                                                 | **Notes**: None                                    |
++-------------------------------------------------+----------------------------------------------------+
+|                                                                                                      |
++-------------------------------------------------+----------------------------------------------------+
+| | :raw-html:`<h3>Some</h3>`                     | Randomly applies a number of the provided          |
+| | ``SomeOf(steps, n, **kwargs)``                | transformation or quantifier steps.                |
+|                                                 +----------------------------------------------------+
+|                                                 | | **Main parameters**                              |
+|                                                 | | • `n`: ``tuple`` or ``int > 0``                  |
+|                                                 | |   The number of transformation or quantifier     |
+|                                                 |   steps to apply.                                  |
+|                                                 +----------------------------------------------------+
+|                                                 | **Notes**: The chosen steps will still be applied  |
+|                                                 | in the same order they were defined by default.    |
++-------------------------------------------------+----------------------------------------------------+
+|                                                                                                      |
++-------------------------------------------------+----------------------------------------------------+
+| | :raw-html:`<h3>One</h3>`                      | Randomly applies a single step from the provided   |
+| | ``OneOf(steps, **kwargs)``                    | transformation or quantifier steps.                |
+|                                                 +----------------------------------------------------+
+|                                                 | | **Main parameters**                              |
+|                                                 | | • None                                           |
+|                                                 +----------------------------------------------------+
+|                                                 | **Notes**: This is a special case of the           |
+|                                                 | ``SomeOf`` quantifier, with :math:`n=1`.           |
++-------------------------------------------------+----------------------------------------------------+
 
 Using quantifiers
 -----------------
 
 .. py:class:: sigment.quantifiers.Quantifier(steps, [main params], random_order=False, random_state=None)
+
+    Base class representing a single quantifier.
+
+    .. note::
+        As ``Quantifier`` is a base class, it should **not** be directly instantiated – use one of the quantifier classes listed :ref:`above<Quantifiers>`.
+
+    :param steps: A collection of transformation or quantifier steps to apply.
+    :type steps: ``List[Transform, Quantifier]``
+
+    :param random_order: Whether or not to randomize the order of execution of `steps`.
+    :type random_order: ``bool``
+
+    :param random_state: A random state object or seed for reproducible randomness.
+    :type random_state: ``numpy.RandomState``, ``int`` or ``None``
 
     .. py:function:: __call__(self, X, sr=None)
 
