@@ -169,9 +169,6 @@ class Sometimes(Quantifier):
 
     Parameters
     ----------
-    steps: List[Transform, Quantifier]
-        A collection of transformation or quantifier steps to apply.
-
     p: float [0 <= p <= 1]
         The probability of executing the transformations or quantifiers.
     """
