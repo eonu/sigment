@@ -16,19 +16,19 @@ What is data augmentation?
 
 Data augmentation is the creation of artificial data from original data by typically applying a transformation, or multiple transformations, to the original data. It is a common method for improving the versatility of machine learning models, in addition to providing more training examples for datasets of limited size.
 
-In image data for example, it is common to use horizontal and vertical flipping, random cropping, zooming and additive noise for augmentation. In audio, we can use other transformations such as pitch shifting and fading the signal in or out, but some image augmentation methods such as additive noise can also be used on audio data.
+In image data for example, it is common to use horizontal and vertical flipping, random cropping, zooming and additive noise for augmentation. In audio, we can use other transformations such as pitch shifting, time stretching or fading the signal in or out. Some image augmentation methods such as additive noise can also be transferred over to audio data.
 
 Example
 -------
 
 From an audio signal like:
 
-.. image:: https://i.ibb.co/cbvgDkY/original.png
+.. image:: https://i.ibb.co/jzB9Hr5/original.png
   :alt: Original
 
 Sigment can produce augmentations such as:
 
-.. image:: https://i.ibb.co/bKjbZL2/augmented.png
+.. image:: https://i.ibb.co/tqwvXcc/augmented.png
   :alt: Augmented
 
 .. toctree::
@@ -43,7 +43,9 @@ Sigment can produce augmentations such as:
     :maxdepth: 2
     :caption: Features
 
-    sections/features.rst
+    sections/transformations.rst
+    sections/quantifiers.rst
+    sections/validations.rst
 
 Documentation Search and Index
 ==============================

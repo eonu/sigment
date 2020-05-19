@@ -1,10 +1,13 @@
 # Specify Python and versions to test
 language: python
 python:
-  - 3.5
   - 3.6
   - 3.7
   - 3.8
+
+# Preliminary scripts
+before_install:
+  - pip install llvmlite
 
 # Installation scripts
 install:
