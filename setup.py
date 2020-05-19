@@ -28,7 +28,6 @@ setup(
     packages = find_packages(where='lib'),
     classifiers = [
         'Development Status :: 2 - Pre-Alpha',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
@@ -40,7 +39,7 @@ setup(
         'Topic :: Scientific/Engineering',
         'Natural Language :: English'
     ],
-    python_requires='>=3.5,<=3.8',
+    python_requires='>=3.6,<=3.8',
     install_requires = [
         'numpy>=1.17,<2',
         'soundfile>=0.10,<0.11',
