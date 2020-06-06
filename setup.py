@@ -43,6 +43,7 @@ setup(
     install_requires = [
         'numpy>=1.17,<2',
         'soundfile>=0.10,<0.11',
+        'numba==0.48',
         'librosa>=0.7,<0.8'
     ]
 )
