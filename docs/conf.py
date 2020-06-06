@@ -30,7 +30,7 @@ copyright = '2019-2021, Edwin Onuonga'
 author = 'Edwin Onuonga'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+release = sigment.__version__
 
 # -- General configuration ---------------------------------------------------
 
