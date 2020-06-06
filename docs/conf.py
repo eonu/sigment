@@ -8,14 +8,18 @@
 
 # -- Path setup --------------------------------------------------------------
 
-import sys
-import os
-import subprocess
+import sys, os, subprocess
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.abspath('..'))
+try:
+    # Sigment is installed
+    import sigment
+except ImportError:
+    # Sigment is run from its source checkout
+    sys.path.insert(0, os.path.abspath('../lib'))
+    import sigment
 
 subprocess.call('pip install numpydoc sphinx_rtd_theme m2r', shell=True)
 
