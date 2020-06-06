@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from librosa import load
-from soundfile import write
-from numpy import asfortranarray
+import librosa, soundfile as sf, numpy as np
 
 class _Base:
     def apply_to_wav(self, source, out=None):
@@ -30,8 +28,8 @@ class _Base:
         >>> transform.apply_to_wav('in.wav', 'out.wav')
         """
         out = source if out is None else out
-        X, sr = load(source, mono=False)
-        write(out, data=self.__call__(X, sr).T, samplerate=sr)
+        X, sr = librosa.load(source, mono=False)
+        sf.write(out, data=self.__call__(X, sr).T, samplerate=sr)
 
     def generate_from_wav(self, source, n=1):
         """Applies the augmentation to the provided input WAV file and returns a ``numpy.ndarray``.
@@ -57,11 +55,11 @@ class _Base:
         >>> # Generate 5 augmented versions of the signal data from 'signal.wav' as numpy.ndarrays.
         >>> transformed = transform.generate_from_wav('signal.wav', n=5)
         """
-        X, sr = load(source, mono=False)
+        X, sr = librosa.load(source, mono=False)
         return self.generate(X, n, sr)
 
     def _apply(self):
         return self.random_state.uniform(size=1).item() < self.p
 
     def _flatten(self, X):
-        return asfortranarray((X.reshape(-1) if any(i == 1 for i in X.shape) else X) if X.ndim == 2 else X)
+        return np.asfortranarray((X.reshape(-1) if any(i == 1 for i in X.shape) else X) if X.ndim == 2 else X)
