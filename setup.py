@@ -19,7 +19,7 @@ setup(
     long_description_content_type = 'text/markdown',
     url = 'https://github.com/eonu/sigment',
     project_urls = {
-        'Documentation': 'https://sigment.readthedocs.io/en/latest',
+        'Documentation': 'https://notes.eonu.net/docs/sigment/',
         'Bug Tracker': 'https://github.com/eonu/sigment/issues',
         'Source Code': 'https://github.com/eonu/sigment'
     },
