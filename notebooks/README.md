@@ -1,6 +1,6 @@
 # Notebooks
 
-The notebooks in this directory serve as an accompaniment to the Sigment [documentation](https://sigment.readthedocs.io/en/latest). They give some examples of practical use of the library.
+The notebooks in this directory serve as an accompaniment to the Sigment [documentation](https://notes.eonu.net/docs/sigment/). They give some examples of practical use of the library.
 
 The suggest order to read the notebooks in is:
 

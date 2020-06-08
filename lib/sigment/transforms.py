@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import numpy as np
+import numpy as np, librosa
 from itertools import chain
 from math import ceil
 from copy import copy
-from librosa import to_mono
-from librosa.effects import time_stretch, pitch_shift
 from .base import _Base
 from .internals import _Validator
 
@@ -221,7 +219,7 @@ class TimeStretch(Transform):
         rate = self.random_state.uniform(*self.rate)
 
         # Return the signal with time stretching applied to each channel independently
-        return np.apply_along_axis(time_stretch, 1, np.asfortranarray(X.T).T, rate=rate)
+        return np.apply_along_axis(librosa.effects.time_stretch, 1, np.asfortranarray(X.T).T, rate=rate)
 
 class PitchShift(Transform):
     """Shifts the pitch of the signal without changing its duration or speed.
@@ -250,7 +248,7 @@ class PitchShift(Transform):
         n_steps = self.random_state.uniform(*self.n_steps)
 
         # Return the signal with pitch shifting applied to each channel independently
-        return np.apply_along_axis(pitch_shift, 1, np.asfortranarray(X.T).T, sr=sr, n_steps=n_steps)
+        return np.apply_along_axis(librosa.effects.pitch_shift, 1, np.asfortranarray(X.T).T, sr=sr, n_steps=n_steps)
 
 class EdgeCrop(Transform):
     """Crops a section from the start or end of the signal.
@@ -468,7 +466,7 @@ class ExtractLoudestSection(Transform):
         duration = self.random_state.uniform(*self.duration)
 
         # Convert stereo signals to mono and take the absolute value
-        mono_amp = np.abs(to_mono(X))
+        mono_amp = np.abs(librosa.to_mono(X))
         # Calculate the length of the section in terms of frames
         total_frames = len(mono_amp)
         frames = ceil(total_frames * duration)

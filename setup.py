@@ -4,7 +4,7 @@
 from __future__ import print_function
 from setuptools import setup, find_packages
 
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 
 with open('README.md', 'r') as fh:
     long_description = fh.read()
@@ -19,7 +19,7 @@ setup(
     long_description_content_type = 'text/markdown',
     url = 'https://github.com/eonu/sigment',
     project_urls = {
-        'Documentation': 'https://sigment.readthedocs.io/en/latest',
+        'Documentation': 'https://notes.eonu.net/docs/sigment/',
         'Bug Tracker': 'https://github.com/eonu/sigment/issues',
         'Source Code': 'https://github.com/eonu/sigment'
     },
@@ -43,6 +43,7 @@ setup(
     install_requires = [
         'numpy>=1.17,<2',
         'soundfile>=0.10,<0.11',
+        'numba==0.48',
         'librosa>=0.7,<0.8'
     ]
 )

@@ -17,9 +17,6 @@
         <a href="https://raw.githubusercontent.com/eonu/sigment/master/LICENSE">
             <img src="https://img.shields.io/pypi/l/sigment?style=flat" alt="PyPI - License"/>
         </a>
-        <a href="https://sigment.readthedocs.io/en/latest">
-            <img src="https://readthedocs.org/projects/sigment/badge/?version=latest&style=flat" alt="Read The Docs - Documentation">
-        </a>
         <a href="https://travis-ci.org/eonu/sigment">
             <img src="https://img.shields.io/travis/eonu/sigment?logo=travis&style=flat" alt="Travis - Build">
         </a>
@@ -34,7 +31,7 @@ In image data for example, it is common to use horizontal and vertical flipping,
 
 ### Supported augmentation methods
 
-Sigment currently provides the following augmentation methods for both mono and stereo signals. More information about each can be found in the [documentation](https://sigment.readthedocs.io/en/latest):
+Sigment currently provides the following augmentation methods for both mono and stereo signals. More information about each can be found in the [documentation](https://notes.eonu.net/docs/sigment/):
 
 - [x] Additive Gaussian White Noise
 - [x] Time Stretching and Pitch Shifting
@@ -121,7 +118,7 @@ Sigment provides two main components that can be used to construct augmentation 
 - **Quantifiers** (`sigment.quantifiers`): Used to specify rules for how a sequence of transformations
 or nested quantifiers should be applied to augment the audio data.
 
-Read the [documentation](https://sigment.readthedocs.io/en/latest) and [example notebooks](https://nbviewer.jupyter.org/github/eonu/sigment/blob/master/notebooks/) for more information about the usage of both.
+Read the [documentation](https://notes.eonu.net/docs/sigment/) and [example notebooks](https://nbviewer.jupyter.org/github/eonu/sigment/blob/master/notebooks/) for more information about the usage of both.
 
 ## Acknowledgements
 
@@ -156,6 +153,6 @@ All contributions to this repository are greatly appreciated. Contribution guide
 ---
 
 <p align="center">
-    <b>Sigment</b> &copy; 2019-2020, Edwin Onuonga - Released under the <a href="https://opensource.org/licenses/MIT">MIT</a> License.<br/>
+    <b>Sigment</b> &copy; 2019-2021, Edwin Onuonga - Released under the <a href="https://opensource.org/licenses/MIT">MIT</a> License.<br/>
     <em>Authored and maintained by Edwin Onuonga.</em>
 </p>
